@@ -1,5 +1,5 @@
 import data_structure
-
+import numpy as np
 
 def insert_sort(arr):
     for j in range(1,len(arr)):
@@ -66,7 +66,33 @@ def quick_sort(arr,low,high):
         quick_sort(arr,i+2,high)
 
 # ===================================
+# 计数排序
+# k是arr元素的最大值+1
+def count_sort(arr,k):
+    c=list(np.zeros((1,k),int)[0])
+    res=arr[:]
+    for i in arr:
+        c[i]=c[i]+1
+    for i in range(1,len(c)):
+        c[i]+=c[i-1]
+    # 到现在c[i]表示<=i的元素的个数
+    # 以下循环的写法是为了保证排序是稳定的
+    for i in range(len(arr)-1,-1,-1):
+        res[c[arr[i]]-1]=arr[i]
+        c[arr[i]]=c[arr[i]]-1
+    return res
 
+#========================================
+# 基数排序
+# 类似桶排序
+def radix_sort(arr):
+    pass
+
+#========================================
+# 桶排序
+# 借助插入排序
+def bucket_sort(arr):
+    pass
 
 if __name__=='__main__':
     arr=[2,1,6,3,7,5,4]
@@ -77,5 +103,6 @@ if __name__=='__main__':
     # heap= data_structure.Heap(arr)
     # heap.heap_sort()
     # print(heap.data)
-    quick_sort(arr,0,len(arr))
+    # quick_sort(arr,0,len(arr))
+    arr=count_sort(arr,8)
     print(arr)

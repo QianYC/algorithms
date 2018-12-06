@@ -35,3 +35,4 @@ class Heap:
         return 2*i+1
     def right(self,i):
         return 2*(i+1)
+
