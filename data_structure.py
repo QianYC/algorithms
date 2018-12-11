@@ -90,8 +90,11 @@ def in_order_visit_non_recursive_without_stack(root):
         node=root.left_most()
         rm=root.right_most()
         while node!=rm:
-            
-            pass
+            print(node.val)
+            if node.right:
+                node=node.right
+            else:
+                node=node.parent
 
 if __name__=='__main__':
     n1=BSTNode(val=5)
